@@ -249,7 +249,7 @@ p { color: var(--ink-soft); }
 .hero__bg {
   position: absolute;
   inset: 0;
-  background-image: url('../images/hero-bg.jpg');
+  background-image: url('../images/vaffi-hair-1.jpg');
   background-size: cover;
   background-position: center;
   filter: brightness(0.55);
@@ -782,6 +782,88 @@ section { padding: 6rem 0; }
   margin: 0 auto 4rem;
 }
 
+/* ========== BRANDS GRID ========== */
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+.brand-tile {
+  aspect-ratio: 1 / 1;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 50%, rgba(201,169,97,0.06) 100%);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.brand-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: transparent;
+}
+
+.brand-tile:hover::before { opacity: 1; }
+
+.brand-tile img {
+  max-width: 75%;
+  max-height: 65%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(0.25);
+  transition: filter var(--transition);
+  position: relative;
+  z-index: 1;
+}
+
+.brand-tile:hover img { filter: grayscale(0); }
+
+.brand-tile__name {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all var(--transition);
+  z-index: 1;
+}
+
+.brand-tile:hover .brand-tile__name {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 960px) {
+  .brands-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 540px) {
+  .brands-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .brand-tile { padding: 1.25rem; }
+}
+
 /* ========== VIDEO PAGE ========== */
 .video-grid {
   display: grid;
@@ -985,7 +1067,7 @@ section { padding: 6rem 0; }
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('../images/stylist.jpg');
+  background-image: url('../images/vaffi-hair-2.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0.18;
