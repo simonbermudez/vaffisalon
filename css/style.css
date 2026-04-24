@@ -249,7 +249,7 @@ p { color: var(--ink-soft); }
 .hero__bg {
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1800&q=80');
+  background-image: url('../images/hero-bg.jpg');
   background-size: cover;
   background-position: center;
   filter: brightness(0.55);
@@ -985,7 +985,7 @@ section { padding: 6rem 0; }
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1800&q=80');
+  background-image: url('../images/stylist.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0.18;
