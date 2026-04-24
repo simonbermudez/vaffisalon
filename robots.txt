@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Exclude internal assets
+Disallow: /images/instagram/posts.json
+Disallow: /scripts/
+
+Sitemap: https://vaffisalon.com/sitemap.xml

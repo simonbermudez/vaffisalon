@@ -109,7 +109,7 @@
       return `
         <a class="ig-card reveal" href="${href}" target="_blank" rel="noopener" aria-label="Open on Instagram">
           ${badge}
-          <img src="images/instagram/${p.file}" alt="${safeCaption}" loading="lazy" />
+          <img src="images/instagram/${p.file}" alt="${safeCaption}" width="640" height="640" loading="lazy" />
           <div class="ig-card__overlay">
             <div class="ig-card__caption">${safeCaption}</div>
             <div class="ig-card__cta">View on Instagram →</div>
