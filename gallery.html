@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Gallery of work from Vaffi Hair Salon & Aesthetics — colour, cuts, extensions, and more." />
+  <meta name="description" content="Latest work from Vaffi Hair Salon & Aesthetics — pulled straight from our Instagram @vaffisalon." />
   <meta name="theme-color" content="#2b2420" />
   <title>Gallery — Vaffi Hair Salon & Aesthetics</title>
 
@@ -40,7 +40,7 @@
 
     <section class="page-hero">
       <div class="container page-hero__content">
-        <span class="eyebrow">Our Work</span>
+        <span class="eyebrow">Our Work · Live from Instagram</span>
         <h1>Gallery</h1>
         <p style="max-width: 55ch; margin: 1rem auto 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.25rem; color: var(--ink);">Your hair, your vision — our application and technique creates the hair you've always wanted.</p>
         <div class="breadcrumbs">
@@ -52,59 +52,26 @@
     <section>
       <div class="container">
 
-        <div class="gallery-grid">
-          <div class="gallery-item reveal">
-            <img src="images/vaffi-hair-1.jpg" alt="Signature blonde highlights by Vaffi" loading="lazy" />
-            <span class="gallery-item__label">Signature Blonde</span>
-          </div>
-          <div class="gallery-item reveal">
-            <img src="images/vaffi-hair-2.jpg" alt="Balayage with layered waves by Vaffi" loading="lazy" />
-            <span class="gallery-item__label">Balayage &amp; Waves</span>
-          </div>
-          <div class="gallery-item reveal">
-            <img src="images/precision-cut.jpg" alt="Precision cut" loading="lazy" />
-            <span class="gallery-item__label">Precision Cut</span>
-          </div>
-          <div class="gallery-item reveal">
-            <img src="images/full-colour.jpg" alt="Colour transformation" loading="lazy" />
-            <span class="gallery-item__label">Full Colour</span>
-          </div>
-          <div class="gallery-item reveal">
-            <img src="images/updo.jpg" alt="Updo styling" loading="lazy" />
-            <span class="gallery-item__label">Updo</span>
-          </div>
-          <div class="gallery-item reveal">
-            <img src="images/highlights.jpg" alt="Highlights work" loading="lazy" />
-            <span class="gallery-item__label">Highlights</span>
-          </div>
-          <div class="gallery-item reveal">
-            <img src="images/smoothing.jpg" alt="Smoothing result" loading="lazy" />
-            <span class="gallery-item__label">Cezanne Smoothing</span>
-          </div>
-          <div class="gallery-item reveal">
-            <img src="images/mens-cut.jpg" alt="Men's cut" loading="lazy" />
-            <span class="gallery-item__label">Men's Cut</span>
-          </div>
-          <div class="gallery-item reveal">
-            <img src="images/blowout.jpg" alt="Blowout styling" loading="lazy" />
-            <span class="gallery-item__label">Blowout</span>
-          </div>
-          <div class="gallery-item reveal">
-            <img src="images/extensions.jpg" alt="Extensions" loading="lazy" />
-            <span class="gallery-item__label">Great Lengths Extensions</span>
-          </div>
-          <div class="gallery-item reveal">
-            <img src="images/balayage.jpg" alt="Colour work" loading="lazy" />
-            <span class="gallery-item__label">Corrective Colour</span>
-          </div>
-          <div class="gallery-item reveal">
-            <img src="images/signature-style.jpg" alt="Styling" loading="lazy" />
-            <span class="gallery-item__label">Signature Style</span>
-          </div>
+        <div class="ig-header reveal">
+          <a href="https://www.instagram.com/vaffisalon" target="_blank" rel="noopener" class="ig-handle">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            <span>@vaffisalon</span>
+          </a>
+          <p class="ig-meta">Latest posts · <span id="igUpdated">refreshing…</span></p>
         </div>
 
-        <div style="text-align: center; margin-top: 3.5rem;">
-          <a href="video.html" class="btn btn--ghost">Watch Video →</a>
+        <div class="ig-grid" id="igGrid">
+          <!-- populated by JS from images/instagram/posts.json -->
+          <noscript>
+            <p class="ig-empty">Enable JavaScript to load the latest posts from Instagram.</p>
+          </noscript>
+        </div>
+
+        <div class="ig-footer reveal">
+          <a href="https://www.instagram.com/vaffisalon" target="_blank" rel="noopener" class="btn btn--ghost">Follow @vaffisalon</a>
+          <div style="margin-top: 1.5rem;">
+            <a href="video.html" class="service-card__link">Watch Video →</a>
+          </div>
         </div>
 
       </div>

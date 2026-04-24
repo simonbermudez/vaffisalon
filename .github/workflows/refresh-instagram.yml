@@ -1,0 +1,41 @@
+name: Refresh Instagram gallery
+
+on:
+  schedule:
+    # 13:00 UTC daily (= 09:00 ET, before the salon opens)
+    - cron: '0 13 * * *'
+  workflow_dispatch: {}   # manual trigger from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-instagram
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Refresh snapshot
+        run: python3 scripts/refresh_instagram.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "vaffi-bot"
+          git config user.email "vaffi-bot@users.noreply.github.com"
+          git add images/instagram
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git commit -m "chore(ig): refresh Instagram snapshot"
+          git push

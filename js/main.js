@@ -73,7 +73,74 @@
     if (todayItem) todayItem.classList.add('today');
   }
 
-  // ===== Gallery lightbox =====
+  // ===== Instagram feed (loaded from images/instagram/posts.json) =====
+  const igGrid = document.getElementById('igGrid');
+  const igUpdated = document.getElementById('igUpdated');
+
+  function formatRelative(iso) {
+    if (!iso) return 'recently';
+    const then = new Date(iso).getTime();
+    const diff = Date.now() - then;
+    const mins = Math.round(diff / 60000);
+    const hours = Math.round(mins / 60);
+    const days = Math.round(hours / 24);
+    if (mins < 60) return `updated ${mins} min ago`;
+    if (hours < 24) return `updated ${hours}h ago`;
+    if (days < 7) return `updated ${days}d ago`;
+    return `updated ${new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}`;
+  }
+
+  function renderIG(data) {
+    if (!igGrid) return;
+    const posts = (data && data.posts) || [];
+    if (!posts.length) {
+      igGrid.innerHTML = '<p class="ig-empty">No posts to show yet — follow <a href="https://www.instagram.com/vaffisalon" target="_blank" rel="noopener">@vaffisalon</a> on Instagram.</p>';
+      return;
+    }
+    if (igUpdated) igUpdated.textContent = formatRelative(data.updated_at);
+
+    igGrid.innerHTML = posts.map((p) => {
+      const caption = p.short || p.caption || '';
+      const safeCaption = caption.replace(/[<>&"']/g, (c) => ({ '<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;' }[c]));
+      const href = p.url || '#';
+      const badge = p.is_video
+        ? '<span class="ig-card__badge" aria-label="Video"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>'
+        : '';
+      return `
+        <a class="ig-card reveal" href="${href}" target="_blank" rel="noopener" aria-label="Open on Instagram">
+          ${badge}
+          <img src="images/instagram/${p.file}" alt="${safeCaption}" loading="lazy" />
+          <div class="ig-card__overlay">
+            <div class="ig-card__caption">${safeCaption}</div>
+            <div class="ig-card__cta">View on Instagram →</div>
+          </div>
+        </a>`;
+    }).join('');
+
+    // re-attach reveal observer for newly inserted nodes
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      igGrid.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    }
+  }
+
+  if (igGrid) {
+    fetch('images/instagram/posts.json', { cache: 'no-cache' })
+      .then((r) => r.ok ? r.json() : Promise.reject(r.status))
+      .then(renderIG)
+      .catch(() => {
+        igGrid.innerHTML = '<p class="ig-empty">Couldn\u2019t load the latest posts. Visit <a href="https://www.instagram.com/vaffisalon" target="_blank" rel="noopener">@vaffisalon</a> directly.</p>';
+      });
+  }
+
+  // ===== Lightbox (legacy gallery-item only) =====
   const galleryItems = document.querySelectorAll('.gallery-item');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
