@@ -1,16 +1,16 @@
 :root {
-  --bg: #faf6f0;
-  --bg-alt: #f1ebe0;
-  --ink: #2b2420;
-  --ink-soft: #6b5b4e;
-  --line: #e6ddcf;
-  --gold: #c9a961;
-  --gold-deep: #a88845;
+  --bg: #ffffff;
+  --bg-alt: #f7f7f5;
+  --ink: #1a1714;
+  --ink-soft: #6b6560;
+  --line: #e8e6e3;
+  --gold: #c4a265;
+  --gold-deep: #a3894a;
   --plum: #3a1f2b;
   --white: #ffffff;
-  --shadow-sm: 0 2px 8px rgba(43, 36, 32, 0.06);
-  --shadow-md: 0 10px 30px rgba(43, 36, 32, 0.10);
-  --shadow-lg: 0 20px 60px rgba(43, 36, 32, 0.15);
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.10);
   --radius: 4px;
   --container: 1200px;
   --transition: 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -120,7 +120,7 @@ p { color: var(--ink-soft); }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(250, 246, 240, 0.92);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: saturate(180%) blur(14px);
   -webkit-backdrop-filter: saturate(180%) blur(14px);
   border-bottom: 1px solid var(--line);
@@ -1168,7 +1168,7 @@ section { padding: 6rem 0; }
   font-family: inherit;
   font-size: 1rem;
   color: var(--ink);
-  background: var(--bg);
+  background: var(--bg-alt);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   transition: all var(--transition);
