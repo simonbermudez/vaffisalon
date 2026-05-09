@@ -175,7 +175,7 @@
     });
   }
 
-  // ===== Contact form (simulated submit) =====
+  // ===== Contact form (Formspree) =====
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
 
@@ -197,14 +197,32 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending…';
 
-      setTimeout(() => {
-        status.style.display = 'block';
-        status.style.color = 'var(--gold-deep)';
-        status.textContent = 'Thank you — we\u2019ll be in touch shortly.';
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Send Message';
-      }, 900);
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then((res) => {
+          if (res.ok) {
+            status.style.display = 'block';
+            status.style.color = 'var(--gold-deep)';
+            status.textContent = 'Thank you — we\u2019ll be in touch shortly.';
+            form.reset();
+          } else {
+            return res.json().then((data) => {
+              throw new Error(data.errors ? data.errors.map((e) => e.message).join(', ') : 'Submission failed');
+            });
+          }
+        })
+        .catch(() => {
+          status.style.display = 'block';
+          status.style.color = '#b85a5a';
+          status.textContent = 'Something went wrong \u2014 please try again or call us directly.';
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
+        });
     });
   }
 
