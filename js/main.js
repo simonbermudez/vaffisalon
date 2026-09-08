@@ -331,7 +331,7 @@
       }
 
       if (messageField && !messageField.value.trim()) {
-        messageField.value = "Hello! I would like to book the Fall Promo with Cesar Araujo: Package of 4 Blow Dries for $160.";
+        messageField.value = "Hello! I would like to book the Fall Promo for New Clients with Cesar Araujo: Package of 4 Blow Dries for $160.";
       }
 
       // Smooth scroll into view
