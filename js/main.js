@@ -295,22 +295,19 @@
       promoFloatingTrigger.addEventListener('click', () => {
         openPromoModal();
       });
+
+      // Default state is closed: show the floating trigger button so users can open at will
+      setTimeout(() => {
+        if (!promoModal.classList.contains('is-active')) {
+          promoFloatingTrigger.classList.add('is-visible');
+        }
+      }, 500);
     }
 
-    // Check session dismissal
-    let isDismissed = false;
-    try {
-      isDismissed = sessionStorage.getItem('vaffi_cesar_promo_dismissed') === 'true';
-    } catch (e) {
-      isDismissed = false;
-    }
-
-    if (!isDismissed) {
-      // Graceful entrance delay after initial page render
-      setTimeout(openPromoModal, 750);
-    } else if (promoFloatingTrigger) {
-      // Keep floating trigger available so user can reopen
-      promoFloatingTrigger.classList.add('is-visible');
+    // Open only if explicitly targeted via URL hash (#promo) or query (?promo=cesar)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (window.location.hash === '#promo' || urlParams.get('promo') === 'cesar') {
+      setTimeout(openPromoModal, 400);
     }
   }
 
