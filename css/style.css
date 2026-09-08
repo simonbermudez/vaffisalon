@@ -1396,4 +1396,408 @@ section { padding: 6rem 0; }
   }
   .hero__bg { animation: none; }
   .reveal { opacity: 1; transform: none; }
+  .promo-modal, .promo-dialog, .promo-floating-trigger {
+    transition: none !important;
+  }
+}
+
+/* ========== CESAR ARAUJO FALL PROMO MODAL ========== */
+.promo-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(14, 11, 9, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.promo-modal.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.promo-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  background: var(--bg);
+  border-radius: 8px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(196, 162, 101, 0.25);
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  overflow: hidden;
+  transform: translateY(20px) scale(0.96);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.promo-modal.is-active .promo-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.promo-dialog__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.promo-dialog__close:hover,
+.promo-dialog__close:focus-visible {
+  background: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+  transform: rotate(90deg);
+}
+
+/* Left Media Column */
+.promo-dialog__media {
+  position: relative;
+  background: #0a1c17;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.promo-dialog__img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+}
+
+.promo-dialog__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+}
+
+.promo-dialog__media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(10, 28, 23, 0.4) 50%, rgba(10, 28, 23, 0.88) 100%);
+  pointer-events: none;
+}
+
+.promo-dialog__media-caption {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  z-index: 2;
+  color: #f4f1ea;
+}
+
+.promo-dialog__media-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #c9a875;
+  margin-bottom: 0.25rem;
+}
+
+.promo-dialog__media-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.promo-dialog__media-link {
+  font-size: 0.78rem;
+  color: rgba(244, 241, 234, 0.8);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+  transition: color var(--transition);
+}
+
+.promo-dialog__media-link:hover {
+  color: #c9a875;
+}
+
+/* Right Content Column */
+.promo-dialog__content {
+  padding: 2.75rem 2.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.promo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  align-self: flex-start;
+  padding: 0.35rem 0.85rem;
+  background: rgba(196, 162, 101, 0.12);
+  border: 1px solid rgba(196, 162, 101, 0.35);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 1rem;
+}
+
+.promo-title {
+  font-size: clamp(1.85rem, 3vw, 2.35rem);
+  line-height: 1.12;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+
+.promo-title span {
+  color: var(--gold-deep);
+  font-style: italic;
+}
+
+.promo-sub {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+/* Offer Box */
+.promo-offer {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 1.15rem 1.35rem;
+  margin-bottom: 1.75rem;
+}
+
+.promo-offer__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.promo-offer__name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.promo-offer__price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.promo-offer__amount {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--gold-deep);
+}
+
+.promo-offer__total {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+}
+
+.promo-offer__detail {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin-top: 0.25rem;
+}
+
+.promo-offer__deadline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #8c6a2e;
+}
+
+/* Actions */
+.promo-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.promo-btn-main {
+  width: 100%;
+  padding: 1rem 1.75rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 8px 24px -6px rgba(163, 137, 74, 0.45);
+}
+
+.promo-actions__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.promo-actions__call {
+  color: var(--ink-soft);
+}
+
+.promo-actions__call a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.promo-actions__call a:hover {
+  color: var(--gold-deep);
+}
+
+.promo-website-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--gold-deep);
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.promo-website-link:hover {
+  color: var(--ink);
+}
+
+/* Floating Reopen Button */
+.promo-floating-trigger {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  z-index: 990;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--ink);
+  color: var(--white);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+  transition: all var(--transition);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+}
+
+.promo-floating-trigger.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.promo-floating-trigger:hover {
+  background: var(--gold-deep);
+  color: var(--white);
+  border-color: var(--gold-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+}
+
+.promo-floating-trigger .trigger-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: promoPulse 2s infinite ease-in-out;
+}
+
+@keyframes promoPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+/* Responsive queries */
+@media (max-width: 860px) {
+  .promo-dialog {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .promo-dialog__img-wrapper {
+    height: 250px;
+    min-height: 250px;
+  }
+  
+  .promo-dialog__content {
+    padding: 1.75rem 1.5rem;
+  }
+  
+  .promo-title {
+    font-size: 1.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .promo-modal {
+    padding: 0.75rem;
+  }
+  .promo-dialog__content {
+    padding: 1.5rem 1.25rem;
+  }
+  .promo-actions__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+  .promo-floating-trigger {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.65rem 1rem;
+    font-size: 0.72rem;
+  }
 }
